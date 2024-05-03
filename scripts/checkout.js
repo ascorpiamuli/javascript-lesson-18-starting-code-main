@@ -15,12 +15,18 @@ import { loadCart } from '../data/cart.js';
 //it easy to deal with asynchronous code
 async function loadPage(){
  //when we return a value in async await functionit is directly converted into a resolve function
-  await loadProductsFetch();
-   await new Promise((resolve)=>{
-        loadCart(()=>{
-            resolve();
-        });
-   })
+ try {
+        await loadProductsFetch();
+        await new Promise((resolve)=>{
+            loadCart(()=>{
+                resolve();
+            });
+        })
+        
+   } catch (error) {
+     console.log('Unexpected Error.Please Try Again Later.');
+   }
+ 
 
    renderOrderSummary();
    renderPaymentSummary();

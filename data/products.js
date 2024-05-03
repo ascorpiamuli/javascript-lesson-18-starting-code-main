@@ -776,7 +776,9 @@ export function loadProductsFetch(){
   console.log('next step');
 });*/
 export function loadProducts(fun){
-
+//xhr stores the instance of a http request and and waits for the load event to load the
+//result then the result is a stringified js string which is then parsed
+//to be a js object through JSON.parse().
   const xhr=new XMLHttpRequest();
   xhr.addEventListener('load',()=>{
    products=JSON.parse(xhr.response).map((productDetails) => {
